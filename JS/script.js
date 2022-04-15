@@ -26,12 +26,18 @@ const RouteList = [
 ]
 const endPointList = {
     all:'all',
+    capital:'capital',
     region:'region',
+    name:'name'
 }
 
 const $navbarList = document.querySelector('.navbar_List')
 const $loader = document.querySelector('.loader')
 const $wrapper = document.querySelector('.wrapper')
+const $select = document.querySelector('.select')
+const $searchInput = document.querySelector('.searchInput')
+const $nav = document.querySelector('.nav')
+
 
 function getBase(endPoint, cb) {
     fetch(`https://restcountries.com/v3.1/${endPoint}`)
@@ -85,14 +91,41 @@ function card(country) {
     return `
         <div class="card">
             <div class="card_title">
-                <p>${country.name.common} ${country.flag}</p>
+                <p>${country.name.common} ${country.flag ? country.flag : '...'}</p>
             </div>
             <div class="card_image">
             <img src="${country.flags.svg}">
             </div>
             <div class="card_footer">
-
+                <button>More</button>
             </div>
         </div>
     `
 }
+
+$select.addEventListener('change', e => {
+    var value = e.target.value;
+    if(value === 'Capital'){
+        $searchInput.setAttribute('placeholder', 'Search by: Capital')
+        $nav.style.background = '#288ba8'
+        $nav.style.color = 'aliceblue'
+    }else{
+        $searchInput.setAttribute('placeholder', 'Search by: Contry')
+        $nav.style.background = '#7066A9'
+        $nav.style.color = 'aliceblue'
+    }
+})
+
+$searchInput.addEventListener('input', e => {
+    var value = e.target.value;
+    var selected = $select.value;
+    if(selected === 'Capital'){
+        getBase(`${endPointList.capital}/${value}`, res => {
+            cardTemplate(res)
+        })
+    }else{
+        getBase(`${endPointList.name}/${value}`, res => {
+            cardTemplate(res)
+        })
+    }
+})
