@@ -89,13 +89,13 @@ function card(country) {
     return `
 		<div class="card">
 			<div class="card_title">
-					<p>${country.name.common} ${country.flag ? country.flag : '...'}</p>
+				<p>${country.name.common} ${country.flag ? country.flag : '...'}</p>
 			</div>
 			<div class="card_image">
 				<img src="${country.flags.svg}">
 			</div>
 			<div class="card_footer">
-					<button onclick="getMore('${country.name.common}')">More</button>
+				<button onclick="getMore('${country.name.common}')">More</button>
 			</div>
 		</div>
     `
@@ -127,11 +127,14 @@ function getMore(more) {
 						<li>Population:${res[0].population} people</li>
 					</ul>
 				</div>
+				<button onclick="goBack()" class="container_btn">Back</button>
 			</div>
 		`
 	})
 }
-
+function goBack() {
+	window.location.reload()
+}
 $select.addEventListener('change', e => {
 	var value = e.target.value;
 	if(value === 'Capital'){
