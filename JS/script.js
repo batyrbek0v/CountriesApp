@@ -117,14 +117,14 @@ function getMore(more) {
 					</div>
 					<ul class="list">
 						<li>Spellings: ${res[0].altSpellings[1]}</li>
-						<li>Region:${res[0].region}</li>
+						<li>Region: ${res[0].region}</li>
 						<li>Capital: ${res[0].capital}</li>
-						<li>Borders with: ${res[0].borders}</li>
+						<li>Borders: ${res[0].borders}</li>
 						<li>Continent: ${res[0].continents}</li>
-						<li>SubRegion:${res[0].subregion}</li>
-						<li>Time Zone:${res[0].timezones}</li>
+						<li>SubRegion: ${res[0].subregion}</li>
+						<li>Time Zone: ${res[0].timezones}</li>
 						<li>Capital Info: ${res[0].capitalInfo.latlng}</li>
-						<li>Population:${res[0].population} people</li>
+						<li>Population: ${res[0].population} people</li>
 					</ul>
 				</div>
 				<button onclick="goBack()" class="container_btn">Back</button>
